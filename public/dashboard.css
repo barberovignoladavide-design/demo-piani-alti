@@ -22,6 +22,54 @@ button:disabled {
   padding-bottom: 100px;
 }
 
+.admin-view.locked .dashboard-group-label,
+.admin-view.locked .stats,
+.admin-view.locked .admin-panels,
+.admin-view.locked #refresh-orders,
+.admin-view.locked #admin-logout,
+.admin-view:not(.locked) .admin-login {
+  display: none;
+}
+
+.admin-login {
+  width: min(100%, 470px);
+  margin: 0 auto;
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.admin-login h2 {
+  margin: 12px 0 8px;
+  font-size: clamp(25px, 3vw, 34px);
+}
+
+.admin-login p {
+  color: #706a70;
+  line-height: 1.55;
+}
+
+.admin-login label {
+  display: block;
+  margin: 22px 0 8px;
+  font-weight: 700;
+}
+
+.admin-login input {
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 18px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.admin-login .primary-button {
+  width: 100%;
+  justify-content: space-between;
+}
+
 .admin-heading {
   align-items: end;
   gap: 30px;

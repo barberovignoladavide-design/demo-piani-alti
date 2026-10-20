@@ -1,14 +1,14 @@
 import { desc } from "drizzle-orm";
 import { getDb } from "../../../db";
 import { orders } from "../../../db/schema";
-import { getChatGPTUser } from "../../chatgpt-auth";
+import { isAdmin } from "../../admin-auth";
 
 const sizes = new Set(["XS", "S", "M", "L", "XL", "XXL"]);
 const payments = new Set(["bank", "cash"]);
 const unitPrice = 25; // Demo only. Replace before real sales.
 
-export async function GET() {
-  if (!(await getChatGPTUser())) {
+export async function GET(request: Request) {
+  if (!(await isAdmin(request))) {
     return Response.json({ error: "Accesso richiesto." }, { status: 401 });
   }
   const rows = await getDb().select().from(orders).orderBy(desc(orders.createdAt));

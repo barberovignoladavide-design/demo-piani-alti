@@ -26,7 +26,11 @@
   async function api(path, options = {}) {
     const response = await fetch(path, { ...options, headers: { 'Content-Type': 'application/json', ...options.headers } });
     const data = await response.json().catch(() => ({}));
-    if (!response.ok) throw new Error(data.error || 'Operazione non riuscita. Riprova.');
+    if (!response.ok) {
+      const error = new Error(data.error || 'Operazione non riuscita. Riprova.');
+      error.status = response.status;
+      throw error;
+    }
     return data;
   }
   function notify(message) {
@@ -100,8 +104,20 @@
   }
   async function loadOrders() {
     $('#order-list').innerHTML = '<div class="empty-state">Caricamento prenotazioni…</div>';
-    try { orders = (await api('/api/orders')).orders; renderAdmin(); }
-    catch (error) { $('#order-list').innerHTML = `<div class="empty-state">${safe(error.message)}</div>`; }
+    try {
+      orders = (await api('/api/orders')).orders;
+      $('#admin-view').classList.remove('locked');
+      $('#admin-login-error').hidden = true;
+      renderAdmin();
+    } catch (error) {
+      if (error.status === 401) {
+        $('#admin-view').classList.add('locked');
+        orders = [];
+      } else {
+        $('#order-list').innerHTML = `<div class="empty-state">${safe(error.message)}</div>`;
+        notify(error.message);
+      }
+    }
   }
   function renderAdmin() {
     const pieces = status => orders.filter(order => order.productionStatus === status).reduce((sum, order) => sum + order.quantity, 0);
@@ -136,6 +152,32 @@
   document.querySelectorAll('[data-view]').forEach(button => button.addEventListener('click', () => setView(button.dataset.view)));
   $('#back-shop').addEventListener('click', () => setView('shop'));
   $('#refresh-orders').addEventListener('click', loadOrders);
+  $('#admin-login').addEventListener('submit', async event => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const button = form.querySelector('[type="submit"]');
+    const error = $('#admin-login-error');
+    button.disabled = true;
+    error.hidden = true;
+    try {
+      await api('/api/admin/login', { method: 'POST', body: JSON.stringify({ password: $('#admin-password').value }) });
+      form.reset();
+      await loadOrders();
+    } catch (cause) {
+      error.textContent = cause.message;
+      error.hidden = false;
+    } finally {
+      button.disabled = false;
+    }
+  });
+  $('#admin-logout').addEventListener('click', async () => {
+    try {
+      await api('/api/admin/logout', { method: 'POST' });
+      orders = [];
+      $('#admin-view').classList.add('locked');
+      $('#admin-login').reset();
+    } catch (cause) { notify(cause.message); }
+  });
   $('#order-search').addEventListener('input', renderOrderList);
   $('#order-filter').addEventListener('change', renderOrderList);
   document.querySelectorAll('[data-size]').forEach(button => button.addEventListener('click', () => {

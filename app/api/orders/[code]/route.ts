@@ -1,15 +1,16 @@
 import { eq } from "drizzle-orm";
 import { getDb } from "../../../../db";
 import { orders } from "../../../../db/schema";
-import { getChatGPTUser } from "../../../chatgpt-auth";
+import { isAdmin, sameOrigin } from "../../../admin-auth";
 
 const paymentStatuses = new Set(["pending", "paid"]);
 const productionStatuses = new Set(["queued", "in_production", "ready", "delivered"]);
 
 export async function PATCH(request: Request, context: { params: Promise<{ code: string }> }) {
-  if (!(await getChatGPTUser())) {
+  if (!(await isAdmin(request))) {
     return Response.json({ error: "Accesso richiesto." }, { status: 401 });
   }
+  if (!sameOrigin(request)) return Response.json({ error: "Richiesta non valida." }, { status: 403 });
   const { code } = await context.params;
   let data: Record<string, unknown>;
   try {

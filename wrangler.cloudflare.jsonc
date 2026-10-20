@@ -1,0 +1,21 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "piani-alti-demo",
+  "workers_dev": true,
+  "main": "./dist/server/index.js",
+  "compatibility_date": "2026-05-15",
+  "compatibility_flags": ["nodejs_compat"],
+  "no_bundle": true,
+  "rules": [
+    { "type": "ESModule", "globs": ["**/*.js", "**/*.mjs"] }
+  ],
+  "assets": { "directory": "./dist/client" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "piani-alti-demo-db",
+      "database_id": "96df6778-1a04-46b3-b37b-e97b59d3cf19"
+    }
+  ],
+  "observability": { "enabled": true }
+}

@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#171917">
-  <meta name="description" content="Demo privata del percorso di prenotazione magliette Piani Alti.">
+  <meta name="description" content="Demo del percorso di prenotazione magliette Piani Alti.">
   <title>Piani Alti — Prenota il drop</title>
   <link rel="stylesheet" href="/site.css">
   <link rel="stylesheet" href="/theme.css">
@@ -12,7 +12,7 @@
   <script src="/app.js" defer></script>
 </head>
 <body>
-  <div class="demo-ribbon">DEMO PRIVATA · dati prodotto e bancari dimostrativi</div>
+  <div class="demo-ribbon">DEMO DI PRESENTAZIONE · dati prodotto e bancari dimostrativi</div>
   <header class="topbar shell">
     <a class="wordmark" href="#inizio" aria-label="Piani Alti, torna all'inizio">PIANI<span>ALTI</span><i>↗</i></a>
     <nav aria-label="Navigazione principale">
@@ -85,12 +85,21 @@
       <section id="confirmation" class="shell confirmation" hidden aria-live="polite"></section>
     </section>
 
-    <section id="admin-view" class="view shell admin-view" hidden>
+    <section id="admin-view" class="view shell admin-view locked" hidden>
       <div class="eyebrow"><span class="eyebrow-line"></span> VISTA INTERNA · DEMO</div>
       <div class="admin-heading">
         <div><h1>Il drop,<br><em>sotto controllo.</em></h1><p>Prenotazioni condivise, produzione e pagamenti sempre distinti. I numeri indicano pezzi, salvo dove è specificato “ordini”.</p></div>
-        <div class="admin-heading-actions"><button id="refresh-orders" class="outline-button" type="button">↻ Aggiorna</button><button id="back-shop" class="outline-button" type="button">← Prenotazione</button></div>
+        <div class="admin-heading-actions"><button id="refresh-orders" class="outline-button" type="button">↻ Aggiorna</button><button id="admin-logout" class="outline-button" type="button">Esci</button><button id="back-shop" class="outline-button" type="button">← Prenotazione</button></div>
       </div>
+      <form id="admin-login" class="admin-login panel" autocomplete="on">
+        <span class="panel-kicker">ACCESSO RISERVATO</span>
+        <h2>Entra nel gestionale</h2>
+        <p>Inserisci la password della demo per vedere e aggiornare le prenotazioni.</p>
+        <label for="admin-password">Password</label>
+        <input id="admin-password" name="password" type="password" autocomplete="current-password" required>
+        <div id="admin-login-error" class="form-error" role="alert" hidden></div>
+        <button class="primary-button" type="submit">Accedi <span>↗</span></button>
+      </form>
       <div class="dashboard-group-label">PANORAMICA · PEZZI</div>
       <div class="stats stats-production">
         <div><span>DA PRODURRE</span><strong id="stat-queued">0</strong><small>prenotati, non ancora avviati</small></div>
@@ -113,7 +122,7 @@
       </div>
     </section>
   </main>
-  <footer class="footer shell"><span>PIANI ALTI ↗</span><span>DEMO PRIVATA · NON È IL SITO UFFICIALE</span><span>BI//ELLA</span></footer>
+  <footer class="footer shell"><span>PIANI ALTI ↗</span><span>DEMO · NON È IL SITO UFFICIALE</span><span>BI//ELLA</span></footer>
   <div id="toast" class="toast" role="status" aria-live="polite"></div>
   <div id="message-dialog" class="message-overlay" hidden><div class="message-dialog" role="dialog" aria-modal="true" aria-labelledby="message-title"><button id="close-message" class="dialog-close" type="button" aria-label="Chiudi">×</button><span class="panel-kicker">AGGIORNAMENTO PRONTO</span><h2 id="message-title">Avvisa il cliente</h2><p id="message-context"></p><div id="message-preview" class="message-preview"></div><p class="message-tip">WhatsApp apre il testo già compilato: controllalo e premi Invia tu.</p><div class="message-actions"><a id="message-whatsapp" class="primary-button" target="_blank" rel="noopener noreferrer">Apri WhatsApp ↗</a><button id="message-copy" class="outline-button" type="button">Copia testo</button><button id="message-later" class="quiet-button" type="button">Non ora</button></div></div></div>
 </body>
