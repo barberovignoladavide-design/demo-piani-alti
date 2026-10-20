@@ -1,4 +1,5 @@
 /* Palette ispirata alla maglietta nera con stampa rosa mostrata da Piani Alti. */
+
 :root {
   --ink: #171317;
   --muted: #706a70;
@@ -9,44 +10,154 @@
   --dark: #191519;
 }
 
-.demo-ribbon { background: var(--ink); color: #fff; }
-.wordmark i, .intro-copy h1 em, .admin-heading h1 em { color: var(--accent); }
-.eyebrow-line { background: var(--accent); }
-.nav-link { color: #746d73; }
-.nav-link.active::after { background: var(--accent); }
-.intro-copy p { color: #615a61; }
-.intro-meta span { border-color: #d4cbd0; }
+.demo-ribbon {
+  background: var(--ink);
+  color: #fff;
+}
 
-.product-stage { background: #f0e3ea; }
+.wordmark i, .intro-copy h1 em, .admin-heading h1 em {
+  color: var(--accent);
+}
+
+.eyebrow-line {
+  background: var(--accent);
+}
+
+.nav-link {
+  color: #746d73;
+}
+
+.nav-link.active::after {
+  background: var(--accent);
+}
+
+.intro-copy p {
+  color: #615a61;
+}
+
+.intro-meta span {
+  border-color: #d4cbd0;
+}
+
+.product-stage {
+  background: #f0e3ea;
+}
+
 .product-stage::before {
   background: linear-gradient(90deg, transparent 49.9%, rgba(60, 30, 48, .045) 50%, transparent 50.1%),
               linear-gradient(transparent 49.9%, rgba(60, 30, 48, .045) 50%, transparent 50.1%);
   background-size: 56px 56px;
 }
-.product-stage::after { background: radial-gradient(circle at 50% 42%, #fff9fc 0%, transparent 58%); }
-.shirt { filter: drop-shadow(0 25px 30px rgba(35, 10, 27, .16)); }
-.section-heading h2 span { color: #a29aa0; }
-.form-card { box-shadow: 0 16px 36px rgba(47, 21, 37, .045); }
-.form-topline, .field-help, .size-note, .payment-option small, .consent, .confirmation .lead, .confirmation-note, .admin-heading p, .order-meta, .tally-panel p { color: #766e74; }
-.field-label span, .field-grid label span, .consent em { color: #c93c81; }
-.sizes button, .quantity button, .order-controls select { background: #fcf8fa; }
-.field-grid input { border-color: #d9cfd5; background: #fff; }
-.field-grid input:focus { border-color: #d94c91; box-shadow: 0 0 0 3px rgba(236, 103, 168, .19); }
-.payment-option { background: #fff; }
-.payment-option:has(input:checked) { background: #fff1f7; border-color: #be397a; box-shadow: inset 0 0 0 1px #be397a; }
-.payment-option:has(input:checked) .radio-icon { border-color: #be397a; }
-.payment-option:has(input:checked) .radio-icon::after { background: #be397a; }
-.consent input { accent-color: #c93c81; }
-.primary-button:hover { background: #34212c; }
-.side-card { background: var(--dark); }
-.aside-index, .side-card h3 em, .side-card li b, .aside-footer span { color: var(--accent); }
-.side-card li, .aside-footer { border-color: #514650; }
-.aside-footer { color: #e6d7df; }
-.success-mark { color: var(--ink); }
-.order-code { background: #fde8f1; }
-.payment-instructions { background: #fbf3f7; }
-.payment-instructions p { color: #6d6069; }
-.placeholder-badge { background: #f8dce9; color: #73364f; }
-.outline-button:hover { background: #f7e6ee; }
-.stats span { color: #e8c9d9; }
-.footer, .empty-state { color: #7c7179; }
+
+.product-stage::after {
+  background: radial-gradient(circle at 50% 42%, #fff9fc 0%, transparent 58%);
+}
+
+.shirt {
+  filter: drop-shadow(0 25px 30px rgba(35, 10, 27, .16));
+}
+
+.section-heading h2 span {
+  color: #a29aa0;
+}
+
+.form-card {
+  box-shadow: 0 16px 36px rgba(47, 21, 37, .045);
+}
+
+.form-topline, .field-help, .size-note, .payment-option small, .consent, .confirmation .lead, .confirmation-note, .admin-heading p, .order-meta, .tally-panel p {
+  color: #766e74;
+}
+
+.field-label span, .field-grid label span, .consent em {
+  color: #c93c81;
+}
+
+.sizes button, .quantity button, .order-controls select {
+  background: #fcf8fa;
+}
+
+.field-grid input {
+  border-color: #d9cfd5;
+  background: #fff;
+}
+
+.field-grid input:focus {
+  border-color: #d94c91;
+  box-shadow: 0 0 0 3px rgba(236, 103, 168, .19);
+}
+
+.payment-option {
+  background: #fff;
+}
+
+.payment-option:has(input:checked) {
+  background: #fff1f7;
+  border-color: #be397a;
+  box-shadow: inset 0 0 0 1px #be397a;
+}
+
+.payment-option:has(input:checked) .radio-icon {
+  border-color: #be397a;
+}
+
+.payment-option:has(input:checked) .radio-icon::after {
+  background: #be397a;
+}
+
+.consent input {
+  accent-color: #c93c81;
+}
+
+.primary-button:hover {
+  background: #34212c;
+}
+
+.side-card {
+  background: var(--dark);
+}
+
+.aside-index, .side-card h3 em, .side-card li b, .aside-footer span {
+  color: var(--accent);
+}
+
+.side-card li, .aside-footer {
+  border-color: #514650;
+}
+
+.aside-footer {
+  color: #e6d7df;
+}
+
+.success-mark {
+  color: var(--ink);
+}
+
+.order-code {
+  background: #fde8f1;
+}
+
+.payment-instructions {
+  background: #fbf3f7;
+}
+
+.payment-instructions p {
+  color: #6d6069;
+}
+
+.placeholder-badge {
+  background: #f8dce9;
+  color: #73364f;
+}
+
+.outline-button:hover {
+  background: #f7e6ee;
+}
+
+.stats span {
+  color: #e8c9d9;
+}
+
+.footer, .empty-state {
+  color: #7c7179;
+}
