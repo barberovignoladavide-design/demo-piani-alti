@@ -17,7 +17,8 @@
   const money = value => new Intl.NumberFormat('it-IT', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(value);
   const safe = value => String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
   const digits = value => String(value || '').replace(/\D/g, '');
-  const whatsappLink = (number, message) => `https://wa.me/${digits(number)}?text=${encodeURIComponent(message)}`;
+  const recipientDigits = value => { const raw = digits(value); return raw.length === 10 && raw.startsWith('3') ? `39${raw}` : raw; };
+  const whatsappLink = (number, message) => `https://wa.me/${recipientDigits(number)}?text=${encodeURIComponent(message)}`;
   let currentOrder = null;
   let toastTimer;
 
@@ -70,7 +71,8 @@
       : `${base}\nHo scelto il bonifico. Vorrei ricevere qui gli aggiornamenti della prenotazione.`;
   }
   function copyText(text) {
-    navigator.clipboard?.writeText(text).then(() => notify('Testo copiato negli appunti')).catch(() => notify('Copia non disponibile in questo browser'));
+    if (!navigator.clipboard?.writeText) { notify('Copia non disponibile in questo browser'); return; }
+    navigator.clipboard.writeText(text).then(() => notify('Testo copiato negli appunti')).catch(() => notify('Copia non disponibile in questo browser'));
   }
   function bankMarkup(order) {
     return `<div class="payment-instructions"><h3>Coordinate per il bonifico</h3><p>La prenotazione è registrata, ma il pagamento sarà confermato dopo la verifica del bonifico. Queste coordinate sono segnaposto della demo.</p><div class="bank-line"><div><span>Intestatario</span><strong>${safe(CONFIG.accountName)}</strong></div></div><div class="bank-line"><div><span>IBAN</span><strong>${safe(CONFIG.iban)}</strong></div></div><div class="bank-line"><div><span>Importo</span><strong>${money(order.total)}</strong></div></div><div class="bank-line"><div><span>Causale</span><strong>${safe(order.code)} ${safe(order.name)}</strong></div><button type="button" data-copy="causale">Copia</button></div><div class="placeholder-badge">Non effettuare un bonifico: IBAN dimostrativo</div></div>`;
