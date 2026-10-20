@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#171917">
+  <meta name="description" content="Demo privata del percorso di prenotazione magliette Piani Alti.">
+  <title>Piani Alti — Prenota il drop</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <div class="demo-ribbon">DEMO PRIVATA · dati prodotto e bancari dimostrativi</div>
+  <header class="topbar shell">
+    <a class="wordmark" href="#inizio" aria-label="Piani Alti, torna all'inizio">PIANI<span>ALTI</span><i>↗</i></a>
+    <nav aria-label="Navigazione principale">
+      <button class="nav-link active" data-view="shop" type="button">Prenotazione</button>
+      <button class="nav-link" data-view="admin" type="button">Vista interna <span class="nav-dot"></span></button>
+    </nav>
+  </header>
+
+  <main id="inizio">
+    <section id="shop-view" class="view">
+      <div class="shell intro-grid">
+        <div class="intro-copy">
+          <div class="eyebrow"><span class="eyebrow-line"></span> IL PROSSIMO DROP</div>
+          <h1>La tua maglia.<br><em>Un posto più in alto.</em></h1>
+          <p>Una prenotazione semplice: scegli la taglia, lascia un contatto e decidi come pagare. Ti aggiorniamo su WhatsApp.</p>
+          <div class="intro-meta"><span>DROP 001</span><span>PREORDINE</span><span>EDIZIONE LIMITATA</span></div>
+        </div>
+        <div class="product-stage" aria-label="Illustrazione dimostrativa di una maglietta nera Piani Alti">
+          <div class="stage-top"><span>PA / 001</span><span>BI//ELLA</span></div>
+          <svg class="shirt" viewBox="0 0 540 570" role="img" aria-label="Maglietta nera con scritta Piani Alti">
+            <defs><linearGradient id="fabric" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#343935"/><stop offset=".52" stop-color="#171b18"/><stop offset="1" stop-color="#0c0e0c"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="24" stdDeviation="22" flood-color="#151515" flood-opacity=".25"/></filter></defs>
+            <path d="M176 90 117 111 36 179 83 263 146 228 154 503 Q270 522 386 503 L394 228 457 263 504 179 423 111 364 90 Q345 125 270 128 Q195 125 176 90Z" fill="url(#fabric)" stroke="#4a514a" stroke-width="3" filter="url(#shadow)"/>
+            <path d="M176 90 Q205 58 228 57 Q270 94 312 57 Q335 58 364 90 Q345 125 270 128 Q195 125 176 90Z" fill="#0b0d0b" stroke="#454a45" stroke-width="3"/>
+            <path d="M228 57 Q270 84 312 57" fill="none" stroke="#555b54" stroke-width="3"/>
+            <path d="M149 226 158 502 M391 226 382 502" stroke="#555a53" stroke-opacity=".25" stroke-width="2"/>
+            <text x="270" y="269" text-anchor="middle" fill="#e6e9dd" font-family="Arial,sans-serif" font-weight="900" font-size="47" letter-spacing="-3">PIANI</text>
+            <text x="270" y="313" text-anchor="middle" fill="#d6ef5b" font-family="Arial,sans-serif" font-weight="900" font-size="47" letter-spacing="-3">ALTI ↗</text>
+            <text x="270" y="352" text-anchor="middle" fill="#c9ccc2" font-family="Arial,sans-serif" font-size="11" letter-spacing="5">MADE TO GO HIGHER</text>
+          </svg>
+          <div class="stage-bottom"><span>01 / 01</span><span>ANTEPRIMA GRAFICA DIMOSTRATIVA</span></div>
+        </div>
+      </div>
+
+      <section class="shell order-section" id="prenota">
+        <div class="section-heading"><div><div class="eyebrow">PRENOTA IL TUO PEZZO</div><h2>Drop 001 <span>/ T-shirt</span></h2></div><div class="price">€25<span> / cad.</span></div></div>
+        <div class="order-layout">
+          <form id="order-form" class="form-card" novalidate>
+            <div class="form-topline"><span>01 — 03</span><span>CI METTI MENO DI UN MINUTO</span></div>
+            <fieldset>
+              <legend>La tua maglietta</legend>
+              <p class="field-help">Scegli taglia e quantità. Il modello mostrato è solo per la demo.</p>
+              <label class="field-label" for="size">Taglia <span>*</span></label>
+              <div class="sizes" id="size-options" role="group" aria-label="Scegli la taglia">
+                <button type="button" data-size="XS">XS</button><button type="button" data-size="S">S</button><button type="button" data-size="M">M</button><button type="button" data-size="L">L</button><button type="button" data-size="XL">XL</button><button type="button" data-size="XXL">XXL</button>
+              </div>
+              <input id="size" name="size" type="hidden" required>
+              <div class="size-note">Vestibilità regolare · guida taglie da aggiungere con i dati del prodotto.</div>
+              <label class="field-label" for="quantity">Quantità <span>*</span></label>
+              <div class="quantity"><button type="button" id="minus" aria-label="Diminuisci quantità">−</button><output id="quantity-output" for="quantity">1</output><button type="button" id="plus" aria-label="Aumenta quantità">+</button><input id="quantity" name="quantity" type="hidden" value="1"></div>
+            </fieldset>
+            <fieldset>
+              <legend>I tuoi dati</legend>
+              <div class="field-grid"><label>Nome e cognome <span>*</span><input name="name" autocomplete="name" required placeholder="Es. Mario Rossi" maxlength="80"></label><label>Numero WhatsApp <span>*</span><input name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="Es. +39 349 123 4567" maxlength="24"></label></div>
+              <p class="field-help">Lo useremo per gli aggiornamenti di questa prenotazione.</p>
+            </fieldset>
+            <fieldset>
+              <legend>Come vuoi pagare?</legend>
+              <div class="payment-choices">
+                <label class="payment-option"><input type="radio" name="payment" value="bank" required><span class="radio-icon"></span><span><strong>Bonifico bancario</strong><small>Coordinate e causale dopo la conferma</small></span><span class="payment-arrow">↗</span></label>
+                <label class="payment-option"><input type="radio" name="payment" value="cash" required><span class="radio-icon"></span><span><strong>Contanti</strong><small>Ti organizzi su WhatsApp con il referente</small></span><span class="payment-arrow">↗</span></label>
+              </div>
+            </fieldset>
+            <label class="consent"><input type="checkbox" name="consent" required><span>Accetto di essere contattato su WhatsApp per comunicazioni relative a questa prenotazione. <em>*</em></span></label>
+            <div id="form-error" class="form-error" role="alert" hidden></div>
+            <div class="submit-row"><div><small>TOTALE</small><strong id="total">€25</strong></div><button class="primary-button" type="submit">Conferma prenotazione <span>↗</span></button></div>
+          </form>
+          <aside class="side-card"><span class="aside-index">PA / COME FUNZIONA</span><h3>Tre passaggi.<br><em>Tutto chiaro.</em></h3><ol><li><b>01</b><span>Scegli taglia e quantità.</span></li><li><b>02</b><span>Conferma i tuoi dati e il metodo di pagamento.</span></li><li><b>03</b><span>Ricevi un codice e prosegui su WhatsApp.</span></li></ol><div class="aside-footer"><span>↗</span> Ti teniamo aggiornato fino a quando la maglietta è pronta.</div></aside>
+        </div>
+      </section>
+      <section id="confirmation" class="shell confirmation" hidden aria-live="polite"></section>
+    </section>
+
+    <section id="admin-view" class="view shell admin-view" hidden>
+      <div class="eyebrow"><span class="eyebrow-line"></span> VISTA INTERNA · DEMO</div><div class="admin-heading"><div><h1>Prenotazioni<br><em>in ordine.</em></h1><p>Gli ordini di questa demo sono salvati solo in questo browser. Cambia stato e prepara il messaggio WhatsApp con un clic.</p></div><button id="back-shop" class="outline-button" type="button">← Torna alla prenotazione</button></div>
+      <div class="stats"><div><span>PRENOTAZIONI</span><strong id="stat-orders">0</strong></div><div><span>MAGLIETTE</span><strong id="stat-shirts">0</strong></div><div><span>IN ATTESA DI PAGAMENTO</span><strong id="stat-pending">0</strong></div></div>
+      <div class="admin-panels"><div class="panel"><div class="panel-heading"><h2>Elenco ordini</h2><span>ORDINI CREATI SU QUESTO DISPOSITIVO</span></div><div id="order-list" class="order-list"></div></div><aside class="panel tally-panel"><div class="panel-heading"><h2>Taglie da produrre</h2></div><div id="size-tally"></div><p>Il conteggio comprende tutte le prenotazioni della demo. Verifica i pagamenti prima di inviare la produzione.</p></aside></div>
+    </section>
+  </main>
+  <footer class="footer shell"><span>PIANI ALTI ↗</span><span>DEMO PRIVATA · NON È IL SITO UFFICIALE</span><span>BI//ELLA</span></footer>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
